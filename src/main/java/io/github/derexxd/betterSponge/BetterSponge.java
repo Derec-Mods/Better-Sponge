@@ -6,8 +6,8 @@ public final class BetterSponge extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
-
+        // startup
+        getServer().getPluginManager().registerEvents(new SpongeAbsorbListener(), this);
     }
 
     @Override
