@@ -1,0 +1,8 @@
+name: Better Sponge
+version: '1.0.0.0'
+main: io.github.derexxd.betterSponge.BetterSponge
+api-version: '1.18'
+prefix: DerexXD
+authors: [ DerexXD ]
+description: Sponge block will absorb in a way bigger radius, fully configurable, and uses the same algorithm the Vanilla sponge block uses for minimal side effects.
+website: https://www.derekchen.dev/
