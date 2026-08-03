@@ -4,6 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.Tag;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.data.Waterlogged;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -45,6 +46,12 @@ public final class BfsFunction {
                         || type == Material.KELP
                         || type == Material.KELP_PLANT) {
                     neighbour.breakNaturally();
+                    continue;
+                }
+
+                if (neighbour.getBlockData() instanceof Waterlogged waterlogged && waterlogged.isWaterlogged()) {
+                    waterlogged.setWaterlogged(false);
+                    neighbour.setBlockData(waterlogged, false);
                     continue;
                 }
 
