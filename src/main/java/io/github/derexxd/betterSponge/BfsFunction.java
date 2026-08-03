@@ -1,6 +1,7 @@
 package io.github.derexxd.betterSponge;
 
 import org.bukkit.Material;
+import org.bukkit.Tag;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 
@@ -38,7 +39,8 @@ public final class BfsFunction {
 
                 Material type = neighbour.getType();
 
-                if (type == Material.SEAGRASS
+                if (Tag.CORAL_PLANTS.isTagged(type)
+                        || type == Material.SEAGRASS
                         || type == Material.TALL_SEAGRASS
                         || type == Material.KELP
                         || type == Material.KELP_PLANT) {
