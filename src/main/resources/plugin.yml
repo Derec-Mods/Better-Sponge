@@ -1,4 +1,4 @@
-name: Better Sponge
+name: BetterSponge
 version: '1.0.0.0'
 main: io.github.derexxd.betterSponge.BetterSponge
 api-version: '1.18'
