@@ -36,6 +36,16 @@ public final class BfsFunction {
             for (BlockFace face : FACES) {
                 Block neighbour = current.block().getRelative(face);
 
+                Material type = neighbour.getType();
+
+                if (type == Material.SEAGRASS
+                        || type == Material.TALL_SEAGRASS
+                        || type == Material.KELP
+                        || type == Material.KELP_PLANT) {
+                    neighbour.breakNaturally();
+                    continue;
+                }
+
                 if (neighbour.getType() != Material.WATER) {
                     continue;
                 }
