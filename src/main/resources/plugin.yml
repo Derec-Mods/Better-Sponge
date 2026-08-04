@@ -1,5 +1,5 @@
 name: BetterSponge
-version: '1.0.3.0'
+version: '${version}'
 main: io.github.derexxd.betterSponge.BetterSponge
 api-version: '1.18'
 prefix: DerexXD
