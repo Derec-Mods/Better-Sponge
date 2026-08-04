@@ -23,7 +23,7 @@ public class SpongeDryListener implements Listener {
             Biome.WOODED_BADLANDS,
             Biome.SAVANNA,
             Biome.SAVANNA_PLATEAU,
-            Biome.WINDSWEPT_SAVANNA,
+            Biome.WINDSWEPT_SAVANNA
     );
 
     public boolean isDryBiome(Block block) {
