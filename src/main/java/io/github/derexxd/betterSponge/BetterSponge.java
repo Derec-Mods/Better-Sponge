@@ -8,6 +8,7 @@ public final class BetterSponge extends JavaPlugin {
     public void onEnable() {
         // startup
         getServer().getPluginManager().registerEvents(new SpongeAbsorbListener(), this);
+        getServer().getPluginManager().registerEvents(new SpongeDryListener(), this);
     }
 
     @Override
