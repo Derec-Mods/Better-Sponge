@@ -24,12 +24,11 @@ public class SpongeDryListener implements Listener {
             Biome.SAVANNA,
             Biome.SAVANNA_PLATEAU,
             Biome.WINDSWEPT_SAVANNA,
-            Biome.NETHER_WASTES,
-            Biome.SOUL_SAND_VALLEY,
-            Biome.CRIMSON_FOREST,
-            Biome.WARPED_FOREST,
-            Biome.BASALT_DELTAS
     );
+
+    public boolean isDryBiome(Block block) {
+        return block.getHumidity() == 0.0;
+    }
 
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onWetSpongePlace(BlockPlaceEvent event) {
