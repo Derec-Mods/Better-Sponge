@@ -40,6 +40,16 @@ public final class BfsFunction {
 
                 Material type = neighbour.getType();
 
+                if (type == Material.WATER) {
+                    neighbour.setType(Material.AIR);
+                    drained++;
+
+                    if (current.depth() < SpongeSettings.MAX_DEPTH) {
+                        queue.add(new Node(neighbour, current.depth() + 1));
+                    }
+                    continue;
+                }
+
                 if (Tag.CORAL_PLANTS.isTagged(type)
                         || type == Material.SEAGRASS
                         || type == Material.TALL_SEAGRASS
@@ -53,17 +63,6 @@ public final class BfsFunction {
                     waterlogged.setWaterlogged(false);
                     neighbour.setBlockData(waterlogged, false);
                     continue;
-                }
-
-                if (neighbour.getType() != Material.WATER) {
-                    continue;
-                }
-
-                neighbour.setType(Material.AIR);
-                drained++;
-
-                if (current.depth() < SpongeSettings.MAX_DEPTH) {
-                    queue.add(new Node(neighbour, current.depth() + 1));
                 }
             }
 
