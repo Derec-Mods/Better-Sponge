@@ -2,6 +2,7 @@ package io.github.derexxd.betterSponge;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
@@ -12,22 +13,45 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 
-import java.util.EnumSet;
 import java.util.Set;
 
 public class SpongeDryListener implements Listener {
-    private static final Set<Biome> DRY_BIOMES = EnumSet.of(
+    private static final Set<NamespacedKey> DRY_BIOME_KEYS = Set.of(
+            NamespacedKey.minecraft("desert"),
+            NamespacedKey.minecraft("badlands"),
+            NamespacedKey.minecraft("eroded_badlands"),
+            NamespacedKey.minecraft("wooded_badlands"),
+            NamespacedKey.minecraft("savanna"),
+            NamespacedKey.minecraft("savanna_plateau"),
+            NamespacedKey.minecraft("windswept_savanna"));
+
+    private static final Set<Biome> DRY_BIOMES = Set.of(
             Biome.DESERT,
             Biome.BADLANDS,
             Biome.ERODED_BADLANDS,
             Biome.WOODED_BADLANDS,
             Biome.SAVANNA,
             Biome.SAVANNA_PLATEAU,
-            Biome.WINDSWEPT_SAVANNA
-    );
+            Biome.WINDSWEPT_SAVANNA);
 
     public boolean isDryBiome(Block block) {
-        return block.getHumidity() == 0.0;
+        return block != null && isDryBiome(block.getBiome());
+    }
+
+    public boolean isDryBiome(Biome biome) {
+        if (biome == null) {
+            return false;
+        }
+
+        try {
+            NamespacedKey key = biome.getKey();
+            if (key != null && DRY_BIOME_KEYS.contains(key)) {
+                return true;
+            }
+        } catch (Throwable ignored) {
+        }
+
+        return DRY_BIOMES.contains(biome);
     }
 
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
@@ -52,8 +76,7 @@ public class SpongeDryListener implements Listener {
                 Sound.BLOCK_FIRE_EXTINGUISH,
                 SoundCategory.BLOCKS,
                 1.0f,
-                1.0f
-        );
+                1.0f);
 
         block.getWorld().spawnParticle(
                 Particle.CLOUD,
@@ -62,11 +85,6 @@ public class SpongeDryListener implements Listener {
                 0.25,
                 0.1,
                 0.25,
-                0.02
-        );
-    }
-
-    private boolean isDryBiome(Biome biome) {
-        return DRY_BIOMES.contains(biome);
+                0.02);
     }
 }
